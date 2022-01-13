@@ -1,0 +1,97 @@
+import random    #1
+limit = 0
+
+def is_valid(n): 
+    res = False
+    if n.isdigit() == True:
+        if int(n) >= 1 and int(n) <= int(limit):
+            res = True
+    return res
+
+
+def input_limit(m):       #11
+    res = False
+    
+    if m.isdigit() == True:
+        if int(m) > 1:
+            res = True
+            limit = int(m)
+    return res
+
+def continue_game():
+    res = False
+    answer = input('Хотите сыграть еще раз? (да / нет): ')
+    if answer.lower() in ['yes', 'y', 'да', 'д', '1', 'ага', 'yeap', 'аха', 1]:
+        res = True
+    return res
+
+def input_num():     #24
+    while True:
+        guess = input()
+        if is_valid(guess):
+            return int(guess)
+        else:
+            print('А может быть все-таки введем целое число от 1 до загаданной Вами границы?')
+
+            
+def greeting():   #33
+    print('Добро пожаловать в игру Числовая угадай-ка!')
+    
+
+def game():
+    import random
+    count = 0
+
+    while True:    #41
+        global limit
+        limit = input('Введите число, которое будет служить границей нашей числовой угадай-ки:', )
+        if input_limit(limit) == False:
+            print('Может всё таки введем корректное целое число, которое будет служить границей нашей игры?')
+            continue
+        else:
+            y = int(limit)
+            print('Игра начинается!')
+            n = random.randint(1, y)          
+            print('Введите число от 1 до', y)      #50
+            while True:
+                
+                num = input()
+                if is_valid(num) == False:
+                    print('А может быть все-таки введем целое число от 1 до ', y, '?', sep ='')
+                    continue
+                else:                   #56
+                    m = int(num)
+                    count += 1
+                    if m > n:
+                        print('Ваше число больше загаданного, попробуйте еще разок')
+                        continue
+            
+                    elif m < n:         #64
+                        print('Ваше число меньше загаданного, попробуйте еще разок') 
+                        continue
+            
+                    else:
+                        break    
+            else:                                 #71
+                break        
+        print('Вы угадали, поздравляем!') 
+        if count == 1:
+            print('Вы угадали за', count, 'попытку')
+        elif count == 2 or count == 3 or count == 4:
+            print('Было сделано', count, 'попытки')
+        else:
+            print('Было сделано', count, 'попыток')
+        count = 0    
+        while True:
+            continue_game()
+            if continue_game() == True:
+                continue
+            else:
+                print('Спасибо, что играли в числовую угадайку. Еще увидимся...')
+                break
+   
+
+                
+greeting()
+
+game()
