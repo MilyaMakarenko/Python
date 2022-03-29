@@ -10,14 +10,15 @@ __For example:__
 _code snippet_
 
 
+``` Python
+m = int(num)
 
-> m = int(num)
-> 
-> count += 1
-> 
-> if m > n:
-> 
->> print('Ваше число больше загаданного, попробуйте еще раз!')
->> 
->> continue
+count += 1
 
+if m > n:
+
+print('Ваше число больше загаданного, попробуйте еще раз!')
+
+continue
+
+```
